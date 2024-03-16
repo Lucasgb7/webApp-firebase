@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GDFF</title>
+  <script src=""></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+  <style>
+    .g-signin2 {
+      margin-top: 20px;
+    }
+  </style>
+  <style media="screen">
+    body {
+      background: #ECEFF1;
+      color: rgba(0, 0, 0, 0.87);
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #login {
+      background: white;
+      max-width: 360px;
+      margin: 100px auto 16px;
+      padding: 32px 24px;
+      border-radius: 3px;
+    }
+
+    #login h2 {
+      color: #ffa100;
+      font-weight: bold;
+      font-size: 16px;
+      margin: 0 0 8px;
+    }
+
+    #login h1 {
+      font-size: 22px;
+      font-weight: 300;
+      color: rgba(0, 0, 0, 0.6);
+      margin: 0 0 16px;
+    }
+
+    #login p {
+      line-height: 140%;
+      margin: 16px 0 24px;
+      font-size: 14px;
+    }
+
+    #login a {
+      display: block;
+      text-align: center;
+      background: #039be5;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: white;
+      padding: 16px;
+      border-radius: 4px;
+    }
+
+    #login,
+    #login a {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    #load {
+      color: rgba(0, 0, 0, 0.4);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    img {
+      max-width: 380px;
+    }
+
+    @media (max-width: 600px) {
+
+      body,
+      #login {
+        margin-top: 0;
+        background: white;
+        box-shadow: none;
+      }
+
+      body {
+        border-top: 16px solid #ffa100;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="login">
+    <!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
+    <h1>Sistema IIOT</h1>
+    <img src="assets/images/logo.png" alt="GDFF Logo" width="400">
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
+  </div>
+  <p id="load">Firebase SDK Loading&hellip;</p>
+  <script type="module">
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCOmDjgSjP1CtLIkg1ynkJD5ShHv99Wup4",
+      authDomain: "dwm-atividade1-1f86b.firebaseapp.com",
+      databaseURL: "https://dwm-atividade1-1f86b-default-rtdb.firebaseio.com",
+      projectId: "dwm-atividade1-1f86b",
+      storageBucket: "dwm-atividade1-1f86b.appspot.com",
+      messagingSenderId: "25966679785",
+      appId: "1:25966679785:web:f901cf197f512c98a7c278"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    // Initialize Realtime Database and get a reference to the service
+    const database = firebase.database(app);
+    var reference = database.ref('Forno1/temp');
+    // onValue(reference, (snapshot) => {
+    //   document.getElementById("forno1_temp").innerHTML = "Temp. Forno 1 = " + snapshot.val();
+    // })
+
+    // Initialize the FirebaseUI Widget using Firebase.
+    var ui = new firebaseui.auth.AuthUI(firebase.auth(app));
+
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          console.log("Sucess!");
+          return true;
+        },
+        uiShown: function () {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      //signInSuccessUrl: '<url-to-redirect-to-on-success>',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+      ],
+      // Terms of service url.
+      //tosUrl: '<your-tos-url>',
+      // Privacy policy url.
+      //privacyPolicyUrl: '<your-privacy-policy-url>'
+    };
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{
+    "Forno1": {
+        "temp": 700,
+        "status": 0,
+        "obs": "-"
+    },
+    "Forno2": {
+        "temp": 400,
+        "status": 2,
+        "obs": "-"
+    },
+    "Forno3": {
+        "temp": 500,
+        "status": 2,
+        "obs": "-"
+    },
+    "Forno4": {
+        "temp": 990,
+        "status": 0,
+        "obs": "-"
+    }
+}
