@@ -1,4 +1,3 @@
-
 body {
   background: #ECEFF1;
   color: rgb(51, 43, 43);
@@ -21,26 +20,18 @@ body {
   text-align: center;
 }
 
-#login a {
-  display: block;
-  text-align: center;
-  background: #039be5;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: white;
-  padding: 16px;
-  border-radius: 4px;
+#login #img_logo {
+    width: 100%;
+    height: 100%;
 }
 
-#login,
-#login a {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+.div_vertical-parent {
+    text-align: center;
 }
 
-#load {
-  color: rgba(0, 0, 0, 0.4);
-  text-align: center;
-  font-size: 13px;
+.div_vertical-child {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 footer {
@@ -48,10 +39,6 @@ footer {
     font-size: small;
     font-style: oblique;
     color: blueviolet;
-}
-
-img {
-  max-width: 380px;
 }
 
 @media (max-width: 600px) {
@@ -64,6 +51,6 @@ img {
   }
 
   body {
-    border-top: 16px solid #ffa100;
+    border-top: 16px solid brown;
   }
 }
