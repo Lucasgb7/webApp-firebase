@@ -48,35 +48,53 @@ var uiConfig = {
 ui.start('#firebaseui-auth-container', uiConfig);
 
 function userAuthorized() {
-    document.getElementById("Forno1Temp").innerHTML = getTemperature('Forno1');
-    changeBackgroundColor("Forno1Temp", getTemperature('Forno1'));
-    document.getElementById("Forno2Temp").innerHTML = getTemperature('Forno2');
-    changeBackgroundColor("Forno2Temp", getTemperature('Forno2'));
-    document.getElementById("Forno3Temp").innerHTML = getTemperature('Forno3');
-    changeBackgroundColor("Forno3Temp", getTemperature('Forno3'));
-    document.getElementById("Forno4Temp").innerHTML = getTemperature('Forno4');
-    changeBackgroundColor("Forno4Temp", getTemperature('Forno4'));
+    // First module: Oven's temperatures
+    getFirebaseData('Forno1', 'temp', (temperature) => {
+        document.getElementById("Forno1Temp").innerHTML = temperature;
+        changeBackgroundColor("Forno1Color", temperature);
+    });
+    getFirebaseData('Forno2', 'temp', (temperature) => {
+        document.getElementById("Forno2Temp").innerHTML = temperature;
+        changeBackgroundColor("Forno2Color", temperature);
+    });
+    getFirebaseData('Forno3', 'temp', (temperature) => {
+        document.getElementById("Forno3Temp").innerHTML = temperature;
+        changeBackgroundColor("Forno3Color", temperature);
+    });
+    getFirebaseData('Forno4', 'temp', (temperature) => {
+        document.getElementById("Forno4Temp").innerHTML = temperature;
+        changeBackgroundColor("Forno4Color", temperature);
+    });
 }
 
-function changeBackgroundColor(fornoId, temperature) {
+/**
+ * 
+ * @param {string} ovenId The oven ID 
+ * @param {number} temperature The temperature from the oven
+ */
+function changeBackgroundColor(ovenId, temperature) {
     if (temperature < 537) {
-        document.getElementById(fornoId).style.backgroundColor = "#8c7373" // rgb(140, 115, 115);
+        document.getElementById(ovenId).style.backgroundColor = "#8c7373" // rgb(140, 115, 115);
     } else if (temperature >= 537 && temperature < 815) {
-        document.getElementById(fornoId).style.backgroundColor = "#cc0000" // rgb(204, 0, 0);
+        document.getElementById(ovenId).style.backgroundColor = "#cc0000" // rgb(204, 0, 0);
     } else if (temperature >= 815 && temperature < 980) {
-        document.getElementById(fornoId).style.backgroundColor = "#ff8833" // rgb(255, 136, 51);
+        document.getElementById(ovenId).style.backgroundColor = "#ff8833" // rgb(255, 136, 51);
     } else if (temperature >= 980 && temperature <= 1100) {
-        document.getElementById(fornoId).style.backgroundColor = "#fff700" // rgb(255, 247, 0);
+        document.getElementById(ovenId).style.backgroundColor = "#fff700" // rgb(255, 247, 0);
     } else {
-        document.getElementById(fornoId).style.backgroundColor = "#ffffff" // white
+        document.getElementById(ovenId).style.backgroundColor = "#ffffff" // white
     }
 }
 
-// param: fornoPath
-function getTemperature(forno) {
-    let temperature;
-    firebase.database().ref('/' + forno + '/temp').on('value', (snapshot) => {
-        temperature = snapshot.val();
+/**
+ * 
+ * @param {string} oven The oven ID
+ * @param {string} data The param data from the oven ID
+ * @param {string} callback Callback for accessing the variable value
+ */
+function getFirebaseData(oven, data, callback) {
+    firebase.database().ref('/' + oven + '/' + data).on('value', (snapshot) => {
+        const data = snapshot.val();
+        callback(data);
     });
-    return temperature;
 }
