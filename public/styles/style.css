@@ -38,6 +38,10 @@ body {
   font-size: 25px;
 }
 
+.oven-status{
+  border-style: dotted;
+}
+
 footer {
     text-align: center;
     font-size: small;

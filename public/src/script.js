@@ -48,7 +48,7 @@ var uiConfig = {
 ui.start('#firebaseui-auth-container', uiConfig);
 
 function userAuthorized() {
-    // First module: Oven's temperatures
+    /////// First module: First module: Oven's temperatures
     getFirebaseData('Forno1', 'temp', (temperature) => {
         document.getElementById("Forno1Temp").innerHTML = temperature;
         changeBackgroundColor("Forno1Color", temperature);
@@ -64,6 +64,34 @@ function userAuthorized() {
     getFirebaseData('Forno4', 'temp', (temperature) => {
         document.getElementById("Forno4Temp").innerHTML = temperature;
         changeBackgroundColor("Forno4Color", temperature);
+    });
+
+    /////// Second module: Oven's status
+    // Status
+    getFirebaseData('Forno1', 'status', (status) => {
+        document.getElementById("Forno1Status").src = getStatusIcon(status);
+    });
+    getFirebaseData('Forno2', 'status', (status) => {
+        document.getElementById("Forno2Status").src = getStatusIcon(status);
+    });
+    getFirebaseData('Forno3', 'status', (status) => {
+        document.getElementById("Forno3Status").src = getStatusIcon(status);
+    });
+    getFirebaseData('Forno4', 'status', (status) => {
+        document.getElementById("Forno4Status").src = getStatusIcon(status);
+    });
+    // Notes
+    getFirebaseData('Forno1', 'obs', (note) => {
+        document.getElementById("Forno1Note").innerHTML = note;
+    });
+    getFirebaseData('Forno2', 'obs', (note) => {
+        document.getElementById("Forno2Note").innerHTML = note;
+    });
+    getFirebaseData('Forno3', 'obs', (note) => {
+        document.getElementById("Forno3Note").innerHTML = note;
+    });
+    getFirebaseData('Forno4', 'obs', (note) => {
+        document.getElementById("Forno4Note").innerHTML = note;
     });
 }
 
@@ -97,4 +125,22 @@ function getFirebaseData(oven, data, callback) {
         const data = snapshot.val();
         callback(data);
     });
+}
+
+/**
+ * 
+ * @param {number} status Number status (0: ok, 1: error on PID, 2: emergency button pressed)
+ * @returns 
+ */
+function getStatusIcon(status) {
+    if (status == 0) {
+        return '/assets/images/status-ok.png';
+    } else if (status == 1) {
+        return '/assets/images/status-warning.png';
+    } else if (status == 2) {
+        return '/assets/images/status-alert.png';
+    } else {
+        console.error("Error! Invalid status value.");
+        return null;
+    }
 }
