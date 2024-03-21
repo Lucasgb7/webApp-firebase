@@ -59,7 +59,7 @@
 
     <div class="div_vertical-child">
       <h1>Status dos Fornos</h1>
-      <div class="oven-status div_">
+      <div class="oven-status">
         <div class="div_vertical-parent">
           <div class="div_vertical-child">
             <h3>Forno 1</h3>
@@ -82,10 +82,14 @@
         <div>
           <h2>Anotações</h2>
           <ul>
-            <li>Forno 1: <p id="Forno1Note"></p></li>
-            <li>Forno 2: <p id="Forno2Note"></p></li>
-            <li>Forno 3: <p id="Forno3Note"></p></li>
-            <li>Forno 4: <p id="Forno4Note"></p></li>
+            <li>Forno 1: <p id="Forno1Note"></p>
+            </li>
+            <li>Forno 2: <p id="Forno2Note"></p>
+            </li>
+            <li>Forno 3: <p id="Forno3Note"></p>
+            </li>
+            <li>Forno 4: <p id="Forno4Note"></p>
+            </li>
           </ul>
         </div>
       </div>
@@ -93,8 +97,52 @@
 
     <div class="div_vertical-child">
       <h1>Anotações dos Fornos</h1>
+      <div class="container">
+        <div class="input-box">
+          <h3 style="padding: 10px;">Forno 1</h3>
+          <input type="text" id="obs-forno1">
+          <button onclick="saveNote(1)">Alterar</button>
+        </div>
+        <div class="input-box">
+          <h3 style="padding: 10px;">Forno 2</h3>
+          <input type="text" id="obs-forno2">
+          <button onclick="saveNote(2)">Alterar</button>
+        </div>
+        <div class="input-box">
+          <h3 style="padding: 10px;">Forno 3</h3>
+          <input type="text" id="obs-forno3">
+          <button onclick="saveNote(3)">Alterar</button>
+        </div>
+        <div class="input-box">
+          <h3 style="padding: 10px;">Forno 4</h3>
+          <input type="text" id="obs-forno4">
+          <button onclick="saveNote(4)">Alterar</button>
+        </div>
+      </div>
     </div>
   </div>
+  <script>
+    function updateFirebaseData(oven, child, data) {
+      const updates = {};
+      updates['/' + oven + '/' + child] = data;
+      firebase.database().ref().update(updates)
+        .then(() => {
+          console.log('O parametro ' + child + ' foi atualizado com sucesso!');
+        })
+        .catch((error) => {
+          console.error('Erro! Nao foi possivel atualizar o parametro: ', error);
+        });
+    }
+
+    function saveNote(ovenId) {
+      // Get the HTML element and store in `data`
+      var element = document.getElementById('obs-forno' + ovenId);
+      var data = element.value;
+      updateFirebaseData('Forno' + ovenId, '/obs', data);
+      // Clear the input value on HTML element
+      element.value = '';
+    }
+  </script>
   <footer>
     <p>Developed by <a href="https://github.com/Lucasgb7/">Lucas Cunha</a></p>
     <link rel="icon" href="assets/images/github.png">
