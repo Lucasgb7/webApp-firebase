@@ -30,6 +30,7 @@ input {
 }
 button {
   padding: 10px;
+  margin: 10px;
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -50,23 +51,29 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .div_vertical-parent {
-    text-align: center;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
 }
 
 .div_vertical-child {
-    display: inline-block;
-    vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 1%;
+  padding: 1%;
 }
 
 .oven_block {
-  font-size: 25px;
+  width: calc(100% / 4);
+  font-size: 30px;
 }
 
 .oven-status{
+  width: 500px;
   border-style: dotted;
 }
 

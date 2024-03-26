@@ -28,30 +28,22 @@
       <h1>Monitoramento de Temperatura</h1>
       <img src="assets/images/forno.png" alt="Forno">
       <div class="div_vertical-parent">
-        <div class="div_vertical-child">
-          <div id="Forno1Color" class="oven_block">F1</div>
-        </div>
-        <div class="div_vertical-child">
-          <div id="Forno2Color" class="oven_block">F2</div>
-        </div>
-        <div class="div_vertical-child">
-          <div id="Forno3Color" class="oven_block">F3</div>
-        </div>
-        <div class="div_vertical-child">
-          <div id="Forno4Color" class="oven_block">F4</div>
-        </div>
+        <div id="Forno1Color" class="div_vertical-child oven_block">F1</div>
+        <div id="Forno2Color" class="div_vertical-child oven_block">F2</div>
+        <div id="Forno3Color" class="div_vertical-child oven_block">F3</div>
+        <div id="Forno4Color" class="div_vertical-child oven_block">F4</div>
       </div>
       <div class="div_vertical-parent">
-        <div class="div_vertical-child">
-          F1 = <b id="Forno1Temp"></b>°C |
+        <div class="div_vertical-child oven_block" style="font-size: 20px;">
+          F1 = <b id="Forno1Temp"></b>°C
         </div>
-        <div class="div_vertical-child">
-          F2 = <b id="Forno2Temp"></b>°C |
+        <div class="div_vertical-child oven_block" style="font-size: 20px;">
+          F2 = <b id="Forno2Temp"></b>°C
         </div>
-        <div class="div_vertical-child">
-          F3 = <b id="Forno3Temp"></b>°C |
+        <div class="div_vertical-child oven_block" style="font-size: 20px;">
+          F3 = <b id="Forno3Temp"></b>°C
         </div>
-        <div class="div_vertical-child">
+        <div class="div_vertical-child oven_block" style="font-size: 20px;">
           F4 = <b id="Forno4Temp"></b>°C
         </div>
       </div>
@@ -60,36 +52,32 @@
     <div class="div_vertical-child">
       <h1>Status dos Fornos</h1>
       <div class="oven-status">
-        <div class="div_vertical-parent">
-          <div class="div_vertical-child">
+        <div class="div_vertical-parent" style="padding: 1%;">
+          <div class="div_vertical-child" style="width: calc(100% / 4); font-size: 15px;">
             <h3>Forno 1</h3>
-            <img id="Forno1Status" src="assets/images/status-ok.png" width="50%" height="50%">
+            <img id="Forno1Status" src="assets/images/status-ok.png">
           </div>
-          <div class="div_vertical-child">
+          <div class="div_vertical-child" style="width: calc(100% / 4); font-size: 15px;">
             <h3>Forno 2</h3>
-            <img id="Forno2Status" src="assets/images/status-ok.png" width="50%" height="50%">
+            <img id="Forno2Status" src="assets/images/status-ok.png">
           </div>
-          <div class="div_vertical-child">
+          <div class="div_vertical-child" style="width: calc(100% / 4); font-size: 15px;">
             <h3>Forno 3</h3>
-            <img id="Forno3Status" src="assets/images/status-ok.png" width="50%" height="50%">
+            <img id="Forno3Status" src="assets/images/status-ok.png">
           </div>
-          <div class="div_vertical-child">
+          <div class="div_vertical-child" style="width: calc(100% / 4); font-size: 15px;">
             <h3>Forno 4</h3>
-            <img id="Forno4Status" src="assets/images/status-ok.png" width="50%" height="50%">
+            <img id="Forno4Status" src="assets/images/status-ok.png">
           </div>
         </div>
 
         <div>
-          <h2>Anotações</h2>
-          <ul>
-            <li>Forno 1: <p id="Forno1Note"></p>
-            </li>
-            <li>Forno 2: <p id="Forno2Note"></p>
-            </li>
-            <li>Forno 3: <p id="Forno3Note"></p>
-            </li>
-            <li>Forno 4: <p id="Forno4Note"></p>
-            </li>
+          <h2 style="text-align: justify; padding-left: 20px;">Anotações</h2>
+          <ul style="text-align: justify;">
+            <li style="padding-left: 5px; font-weight: bold;">Forno 1: <span id="Forno1Note"></span></li>
+            <li style="padding-left: 5px; font-weight: bold;">Forno 2: <span id="Forno2Note"></span></li>
+            <li style="padding-left: 5px; font-weight: bold;">Forno 3: <span id="Forno3Note"></span></li>
+            <li style="padding-left: 5px; font-weight: bold;">Forno 4: <span id="Forno4Note"></span></li>
           </ul>
         </div>
       </div>
